@@ -2,7 +2,7 @@ import { WeatherInformation } from "@/interfaces/OpenWeatherInterfaces/OpenWeath
 import React from "react";
 
 type TodayWeatherLocationProps = {
-    weatherInformation: WeatherInformation | undefined;
+    weatherInformation: WeatherInformation;
 };
 
 function TodayWeatherLocation({
@@ -14,7 +14,7 @@ function TodayWeatherLocation({
 
     return (
         <div
-            className={`flex justify-around font-extralight items-center rounded-xl mx-auto text-yellow-700 w-4/5 h-auto py-2 mt-52 bg-gradient-to-bl from-yellow-100 via-yellow-200 to-yellow-300`}
+            className={`flex justify-around font-extralight items-center rounded-xl mx-auto text-white w-4/5 h-auto py-2 my-5 bg-gradient-to-bl from-blue-100 via-blue-200 to-blue-300`}
         >
             <div className="flex-1 pl-8 flex flex-col gap-2 items-start">
                 <label className="text-5xl">
