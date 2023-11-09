@@ -1,6 +1,5 @@
 import { WeatherInformation } from "@/interfaces/OpenWeatherInterfaces/OpenWeatherInterfaces";
-import { weatherTypeHashMap } from "@/services/weatherCardBackground";
-import React, { useEffect } from "react";
+import React from "react";
 
 type TodayWeatherLocationProps = {
     weatherInformation: WeatherInformation | undefined;
@@ -12,11 +11,6 @@ function TodayWeatherLocation({
     if (!weatherInformation) {
         return <h1>Loading</h1>;
     }
-    const description = weatherInformation.weather[0].description;
-    console.log(description);
-    const cardBackground = weatherTypeHashMap[description];
-    console.log(cardBackground);
-    useEffect(() => {}, [cardBackground]);
 
     return (
         <div
