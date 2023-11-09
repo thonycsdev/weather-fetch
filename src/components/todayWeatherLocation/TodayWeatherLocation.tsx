@@ -1,6 +1,6 @@
 import { WeatherInformation } from "@/interfaces/OpenWeatherInterfaces/OpenWeatherInterfaces";
 import { weatherTypeHashMap } from "@/services/weatherCardBackground";
-import React from "react";
+import React, { useEffect } from "react";
 
 type TodayWeatherLocationProps = {
     weatherInformation: WeatherInformation | undefined;
@@ -13,11 +13,14 @@ function TodayWeatherLocation({
         return <h1>Loading</h1>;
     }
     const description = weatherInformation.weather[0].description;
+    console.log(description);
     const cardBackground = weatherTypeHashMap[description];
+    console.log(cardBackground);
+    useEffect(() => {}, [cardBackground]);
 
     return (
         <div
-            className={`flex justify-around font-extralight items-center rounded-xl mx-auto ${cardBackground} text-yellow-700 w-4/5 h-auto py-2 mt-52`}
+            className={`flex justify-around font-extralight items-center rounded-xl mx-auto text-yellow-700 w-4/5 h-auto py-2 mt-52 bg-gradient-to-bl from-yellow-100 via-yellow-200 to-yellow-300`}
         >
             <div className="flex-1 pl-8 flex flex-col gap-2 items-start">
                 <label className="text-5xl">
