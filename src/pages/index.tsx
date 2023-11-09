@@ -18,7 +18,7 @@ export default function Home() {
     }, []);
     return (
         <>
-            <div className="flex flex-col">
+            <div className="flex flex-col bg-slate-100 h-screen">
                 <TodayWeatherLocation weatherInformation={weatherInformation} />
             </div>
         </>

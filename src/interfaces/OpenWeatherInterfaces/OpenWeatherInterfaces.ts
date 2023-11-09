@@ -44,6 +44,10 @@ export interface WeatherInformation {
     coord: Coord;
     main: Main;
     sys: Sys;
-    weather: Weather;
+    weather: Weather[];
     wind: Wind;
+    timezone: number;
+    id: number;
+    name: string;
+    cod: number;
 }
