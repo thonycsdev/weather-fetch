@@ -1,10 +1,11 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import { Inter } from "next/font/google";
+import { useEffect } from "react";
 
 export default function Home() {
-  return (
-    <h1>Weather Fetch</h1>
-  )
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((cbData) => {
+      console.log(cbData);
+    });
+  }, []);
+  return <h1>Weather Fetch</h1>;
 }
