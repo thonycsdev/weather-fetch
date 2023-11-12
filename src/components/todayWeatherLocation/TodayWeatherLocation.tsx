@@ -2,7 +2,7 @@ import { WeatherInformation } from "@/interfaces/OpenWeatherInterfaces/OpenWeath
 import React from "react";
 
 type TodayWeatherLocationProps = {
-    weatherInformation: WeatherInformation;
+    weatherInformation: WeatherInformation | undefined;
 };
 
 function TodayWeatherLocation({
