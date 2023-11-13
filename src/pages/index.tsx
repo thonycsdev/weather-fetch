@@ -1,14 +1,18 @@
+import useLoading from "@/components/hooks/useLoading";
 import InputLocation from "@/components/inputLocation/InputLocation";
 import TodayWeatherLocation from "@/components/todayWeatherLocation/TodayWeatherLocation";
 import { WeatherInformation } from "@/interfaces/OpenWeatherInterfaces/OpenWeatherInterfaces";
 import { cityService } from "@/services/cityService";
 import { weatherService } from "@/services/weatherService";
+import LinearProgress from "@mui/material/LinearProgress";
 import { useEffect, useState } from "react";
 
 export default function Home() {
     const [weatherInformation, setWeatherInformation] = useState<
         WeatherInformation[]
     >([]);
+
+    const { isLoading, changeLoadingState } = useLoading();
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(async (cbData) => {
             const response = await weatherService({
@@ -19,19 +23,35 @@ export default function Home() {
         });
     }, []);
     const handleSearchCity = async (cityName: string) => {
-        const response = await cityService(cityName);
-        const city = response[0];
-        const cityLocationInfo = {
-            lat: city.latitude,
-            lon: city.longitude,
-        };
-        const cityWeatherInformation = await weatherService(cityLocationInfo);
-        setWeatherInformation((old) => [...old, cityWeatherInformation]);
+        try {
+            changeLoadingState();
+            const response = await cityService(cityName);
+            const city = response[0];
+            const cityLocationInfo = {
+                lat: city.latitude,
+                lon: city.longitude,
+            };
+            const cityWeatherInformation = await weatherService(
+                cityLocationInfo
+            );
+            setWeatherInformation((old) => [...old, cityWeatherInformation]);
+        } catch (error) {
+        } finally {
+            changeLoadingState();
+        }
     };
     return (
         <>
             <div className="flex flex-col bg-slate-100 h-screen">
-                <InputLocation onSearchClick={handleSearchCity} />
+                {isLoading ? (
+                    <div className="my-10 px-20 h-10">
+                        <LinearProgress />
+                    </div>
+                ) : (
+                    <div className="h-10 my-10">
+                        <InputLocation onSearchClick={handleSearchCity} />
+                    </div>
+                )}
                 {weatherInformation.map((cityWeather, idx) => (
                     <TodayWeatherLocation
                         weatherInformation={cityWeather}

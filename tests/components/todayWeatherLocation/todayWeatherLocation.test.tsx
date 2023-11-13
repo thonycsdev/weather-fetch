@@ -21,6 +21,10 @@ describe("Today Weather Location", () => {
         const temperature = screen.getByText(dataFixture.main.temp + " ºC");
         expect(temperature).toBeInTheDocument();
     });
+    test("Should render the correct humitidy of the day", () => {
+        const humidity = screen.getByLabelText("humidity");
+        expect(humidity).toBeInTheDocument();
+    });
     test("Should render the weather infomation name of the location", () => {
         const locationName = screen.getByText(dataFixture.name);
         expect(locationName).toBeInTheDocument();
