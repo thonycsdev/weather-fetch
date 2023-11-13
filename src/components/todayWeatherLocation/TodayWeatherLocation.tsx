@@ -1,11 +1,11 @@
 import { WeatherInformation } from "@/interfaces/OpenWeatherInterfaces/OpenWeatherInterfaces";
-import React from "react";
+import React, { memo } from "react";
 
 type TodayWeatherLocationProps = {
     weatherInformation: WeatherInformation | undefined;
 };
 
-function TodayWeatherLocation({
+const TodayWeatherLocation = memo(function TodayWeatherLocation({
     weatherInformation,
 }: TodayWeatherLocationProps) {
     if (!weatherInformation) {
@@ -36,6 +36,6 @@ function TodayWeatherLocation({
             </div>
         </div>
     );
-}
+});
 
 export default TodayWeatherLocation;

@@ -5,7 +5,7 @@ import { WeatherInformation } from "@/interfaces/OpenWeatherInterfaces/OpenWeath
 import { cityService } from "@/services/cityService";
 import { weatherService } from "@/services/weatherService";
 import LinearProgress from "@mui/material/LinearProgress";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export default function Home() {
     const [weatherInformation, setWeatherInformation] = useState<
@@ -22,7 +22,7 @@ export default function Home() {
             setWeatherInformation([response]);
         });
     }, []);
-    const handleSearchCity = async (cityName: string) => {
+    const handleSearchCity = useCallback(async (cityName: string) => {
         try {
             changeLoadingState();
             const response = await cityService(cityName);
@@ -39,7 +39,7 @@ export default function Home() {
         } finally {
             changeLoadingState();
         }
-    };
+    }, []);
     return (
         <>
             <div className="flex flex-col bg-slate-100 h-screen">

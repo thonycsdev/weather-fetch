@@ -1,11 +1,13 @@
-import React from "react";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import React, { memo } from "react";
+import { FieldValues, useForm } from "react-hook-form";
 
 type InputLocationProps = {
     onSearchClick: (searchTerm: string) => Promise<void>;
 };
 
-function InputLocation({ onSearchClick }: InputLocationProps) {
+const InputLocation = memo(function InputLocation({
+    onSearchClick,
+}: InputLocationProps) {
     const { register, handleSubmit } = useForm();
 
     const handleSearch = (data: FieldValues) => {
@@ -31,6 +33,6 @@ function InputLocation({ onSearchClick }: InputLocationProps) {
             </form>
         </>
     );
-}
+});
 
 export default InputLocation;
