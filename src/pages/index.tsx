@@ -4,6 +4,7 @@ import TodayWeatherLocation from "@/components/todayWeatherLocation/TodayWeather
 import { WeatherInformation } from "@/interfaces/OpenWeatherInterfaces/OpenWeatherInterfaces";
 import { cityService } from "@/services/cityService";
 import { weatherService } from "@/services/weatherService";
+import LinearProgress from "@mui/material/LinearProgress";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -43,9 +44,13 @@ export default function Home() {
         <>
             <div className="flex flex-col bg-slate-100 h-screen">
                 {isLoading ? (
-                    <h1>loading</h1>
+                    <div className="my-10 px-20 h-10">
+                        <LinearProgress />
+                    </div>
                 ) : (
-                    <InputLocation onSearchClick={handleSearchCity} />
+                    <div className="h-10 my-10">
+                        <InputLocation onSearchClick={handleSearchCity} />
+                    </div>
                 )}
                 {weatherInformation.map((cityWeather, idx) => (
                     <TodayWeatherLocation

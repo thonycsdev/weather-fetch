@@ -14,7 +14,7 @@ describe("Home page testing", () => {
     test("should show loading while async function is running", async () => {
         const button = screen.getByRole("button", { name: /search/i });
         await userEvent.click(button);
-        const loading = screen.queryByText(/loading/i);
+        const loading = screen.queryByRole("progressbar");
         await waitFor(() => {
             expect(loading).toBeInTheDocument();
         });

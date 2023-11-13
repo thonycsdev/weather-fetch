@@ -23,6 +23,9 @@ function TodayWeatherLocation({
                 <div className="text-3xl">
                     {weatherInformation.main.temp} ºC
                 </div>
+                <div className="text-xl" aria-label="humidity">
+                    Humidity: {weatherInformation.main.humidity}%
+                </div>
                 <div className="text-xl">{weatherInformation.name}</div>
             </div>
             <div className="">
