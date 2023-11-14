@@ -1,3 +1,4 @@
+import { errorAlert, notFoundAlert } from "@/components/alerts/Alerts";
 import useLoading from "@/components/hooks/useLoading";
 import InputLocation from "@/components/inputLocation/InputLocation";
 import TodayWeatherLocation from "@/components/todayWeatherLocation/TodayWeatherLocation";
@@ -26,25 +27,31 @@ export default function Home() {
         try {
             changeLoadingState();
             const response = await cityService(cityName);
+
+            if (!response || response.length === 0) {
+                notFoundAlert();
+                return;
+            }
+
             const city = response[0];
-            const cityLocationInfo = {
+            const cityWeatherInformation = await weatherService({
                 lat: city.latitude,
                 lon: city.longitude,
-            };
-            const cityWeatherInformation = await weatherService(
-                cityLocationInfo
-            );
+            });
+
             setWeatherInformation((old) => [...old, cityWeatherInformation]);
         } catch (error) {
+            errorAlert();
         } finally {
             changeLoadingState();
         }
     }, []);
+
     return (
         <>
             <div className="flex flex-col bg-slate-100 h-screen">
                 {isLoading ? (
-                    <div className="my-10 px-20 h-10">
+                    <div className="my-10 px-20 h-10" aria-label="loading-bar">
                         <LinearProgress />
                     </div>
                 ) : (
