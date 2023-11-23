@@ -1,116 +1,32 @@
 import React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
+import SearchIcon from "@mui/icons-material/Search";
+import HomeIcon from "@mui/icons-material/Home";
+import PersonPinIcon from "@mui/icons-material/PersonPin";
 
-// const pages = ["Products", "Pricing", "Blog"];
-
+const menuItens = [
+    {
+        name: "Home",
+        icon: <HomeIcon />,
+    },
+    {
+        name: "Search",
+        icon: <SearchIcon />,
+    },
+    {
+        name: "Profile",
+        icon: <PersonPinIcon />,
+    },
+];
 function Navbar() {
-  //   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-  //     null
-  //   );
-
-  //   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-  //     setAnchorElNav(event.currentTarget);
-  //   };
-
-  //   const handleCloseNavMenu = () => {
-  //     setAnchorElNav(null);
-  //   };
-
-  return (
-    <AppBar position="static" color="info">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            Weather Fetch
-          </Typography>
-
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            {/* <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: "block", md: "none" },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu> */}
-          </Box>
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            Weather Fetch
-          </Typography>
-          {/* <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page}
-              </Button>
+    return (
+        <div className="h-16 w-screen fixed bottom-0 flex justify-around items-center rounded-t-full bg-blue-300 text-white animate-slide-bottom">
+            {menuItens.map((item) => (
+                <div className="scale-125 hover:border hover:border-blue-200 hover:scale-150 p-1 rounded-full hover:bg-blue-200 hover:shadow-xl transition-all duration-300">
+                    {item.icon}
+                </div>
             ))}
-          </Box> */}
-        </Toolbar>
-      </Container>
-    </AppBar>
-  );
+        </div>
+    );
 }
 
 export default Navbar;

@@ -25,7 +25,7 @@ const InputLocation = memo(function InputLocation({
                     {...register("city")}
                 />
                 <button
-                    className="p-3 bg-sky-300 text-white rounded-lg"
+                    className="p-3 bg-blue-300 text-white rounded-lg"
                     type="submit"
                 >
                     Search
