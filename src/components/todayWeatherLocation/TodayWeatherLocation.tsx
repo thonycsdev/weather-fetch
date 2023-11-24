@@ -14,7 +14,7 @@ const TodayWeatherLocation = memo(function TodayWeatherLocation({
 
     return (
         <div
-            className={`flex justify-around font-extralight items-center rounded-xl mx-auto text-white w-4/5 h-auto py-2 my-5 bg-gradient-to-bl from-blue-100 via-blue-200 to-blue-300`}
+            className={`flex justify-around font-extralight animate-slide-bottom items-center rounded-xl mx-auto text-white w-4/5 h-auto py-2 my-5 bg-gradient-to-bl from-blue-100 via-blue-200 to-blue-300`}
         >
             <div className="flex-1 pl-8 flex flex-col gap-2 items-start">
                 <label className="text-5xl">

@@ -1,11 +1,12 @@
 import { errorAlert, notFoundAlert } from "@/components/alerts/Alerts";
 import useLoading from "@/components/hooks/useLoading";
 import InputLocation from "@/components/inputLocation/InputLocation";
+import Navbar from "@/components/navbar/Navbar";
 import TodayWeatherLocation from "@/components/todayWeatherLocation/TodayWeatherLocation";
 import { WeatherInformation } from "@/interfaces/OpenWeatherInterfaces/OpenWeatherInterfaces";
 import { cityService } from "@/services/cityService";
 import { weatherService } from "@/services/weatherService";
-import LinearProgress from "@mui/material/LinearProgress";
+import { LinearProgress } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
     >([]);
 
     const { isLoading, changeLoadingState } = useLoading();
+    const [isOpen, setIsOpen] = useState(false);
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(async (cbData) => {
             const response = await weatherService({
@@ -51,20 +53,23 @@ export default function Home() {
         <>
             <div className="flex flex-col bg-slate-100 h-screen">
                 {isLoading ? (
-                    <div className="my-10 px-20 h-10" aria-label="loading-bar">
-                        <LinearProgress />
+                    <div>
+                        <LinearProgress
+                            className="my-10 mx-5"
+                            aria-label="loading-bar"
+                        />
                     </div>
                 ) : (
-                    <div className="h-10 my-10">
-                        <InputLocation onSearchClick={handleSearchCity} />
-                    </div>
+                    isOpen && <InputLocation onSearchClick={handleSearchCity} />
                 )}
+                {}
                 {weatherInformation.map((cityWeather, idx) => (
                     <TodayWeatherLocation
                         weatherInformation={cityWeather}
                         key={idx}
                     />
                 ))}
+                <Navbar onClick={() => setIsOpen((old) => !old)} />
             </div>
         </>
     );

@@ -16,7 +16,7 @@ const InputLocation = memo(function InputLocation({
     return (
         <>
             <form
-                className="flex gap-5 my-6 mx-5"
+                className="flex gap-5 my-6 mx-5 bg-inherit rounded-lg animate-slide-bottom"
                 onSubmit={handleSubmit(handleSearch)}
             >
                 <input

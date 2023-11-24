@@ -10,6 +10,8 @@ describe("Home page testing", () => {
     });
 
     test("should show loading while async function is running", async () => {
+        const navbarButton = screen.getByLabelText("search-item");
+        await userEvent.click(navbarButton);
         const button = screen.getByRole("button", { name: /search/i });
         await userEvent.click(button);
         const loading = await screen.findByRole("progressbar");
